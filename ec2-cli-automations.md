@@ -9,6 +9,30 @@
 - set -o pipefail # don't hide errors within pipes
 - For JSON parsing: sudo yum install jq
 
+**TASK: An EC2 bootstrap script **
+
+https://github.com/awslabs/amazon-guardduty-tester/blob/master/bastion_bootstrap.sh
+
+**TASK: Find OS **
+
+```
+function osrelease () {
+    OS=`cat /etc/os-release | grep '^NAME=' |  tr -d \" | sed 's/\n//g' | sed 's/NAME=//g'`
+    if [ "$OS" == "Ubuntu" ]; then
+        echo "Ubuntu"
+    elif [ "$OS" == "Amazon Linux" ]; then
+        echo "AMZN"
+    elif [ "$OS" == "CentOS Linux" ]; then
+        echo "CentOS"
+    else
+        echo "Operating System Not Found"
+    fi
+    echo "${FUNCNAME[0]} Ended" >> /var/log/cfn-init.log
+}
+
+```
+
+
 **TASK: Check if user has AWS credentials from EC2 by running command: aws sts get-caller-identity**
 
 aws sts get-caller-identity
