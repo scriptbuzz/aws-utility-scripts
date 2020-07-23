@@ -12,11 +12,15 @@ prompt >> aws sts get-caller-identity
 
 # TASK: return AWS account ID and assign to variable AWS_ACCOUNT_ID
 
-AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
+Method#1: AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
+
+Method#2: AWS_ACCOUNT_ID=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .accountId)
+Above example requires the jq package
 
 # TASK: Using the CLI and Bash and EC2 metadata call, determine AWS region
 
 prompt >> MY_AWS_REGIONS=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/\(.*\)[a-z]/\1/')
+
 
 # TASK: Using the variable MY_AWS_REGIONS from previous command, we can test if we are in our supported regions
 
@@ -27,4 +31,10 @@ else
     /bin/echo -e "'$MY_AWS_REGIONS' is a supported AWS Region." 
 fi
 
+
+# TASK: Return a physical resource id from a CloudFormation stack and assign to a variable. In this example, return the name of an S3 bucket.
+
+prompt>> MY_BUCKET=$(aws cloudformation describe-stack-resource --stack-name my-stack --logical-resource-id bucket --query "StackResourceDetail.PhysicalResourceId" --output text)
+
+echo $MY_BUCKET
 
