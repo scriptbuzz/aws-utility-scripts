@@ -3,7 +3,7 @@
 - AWS CLI
 - Least privileged permissions
 
-**Task: These settings are a must for bash script debugging**
+**TASK: These settings are a must for bash script debugging**
 
 - set -o errexit  # abort on nonzero exitstatus
 - set -o pipefail # don't hide errors within pipes
@@ -50,10 +50,10 @@ MY_BUCKET=$(aws cloudformation describe-stack-resource --stack-name my-stack --l
 
 MY_ENDPOINT_HOST=$(aws iot describe-endpoint --endpoint-type iot:Data-ATS | grep endpointAddress | cut -d'"' -f 4)
 
-**Task: Return the IAM Role of a resource in a CloudFormation stack. The example below returns the role of a Lambda function and assign to MY_LAMBDA_ROLE**
+**TASK: Return the IAM Role of a resource in a CloudFormation stack. The example below returns the role of a Lambda function and assign to MY_LAMBDA_ROLE**
 
 MY_LAMBDA_ROLE=$(aws cloudformation describe-stack-resource --stack-name my-stack --logical-resource-id MyLambdaRole --query "StackResourceDetail.PhysicalResourceId" --output text)
 
-**Task: Return the ARN of an IAM Role. In this example, build the ARN string and assign to MY_LAMBDA_ROLE_ARN**
+**TASK: Return the ARN of an IAM Role. In this example, build the ARN string and assign to MY_LAMBDA_ROLE_ARN**
 
 MY_LAMBDA_ROLE_ARN=$(aws iam get-role --role-name $MY_LAMBDA_ROLE | grep Arn | cut -d'"' -f 4)
