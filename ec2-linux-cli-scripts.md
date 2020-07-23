@@ -1,4 +1,4 @@
-Environment: AWS CLI, Bash, Amazon Linux, 
+Environment: AWS CLI, Bash, EC2, Amazon Linux, and least privileged permissions.
 
 **Task: These settings are a must for bash script debugging**
 
@@ -41,11 +41,11 @@ MY_BUCKET=$(aws cloudformation describe-stack-resource --stack-name my-stack --l
 
 echo $MY_BUCKET
 
-**TASK: Return AWS endpoint address of a service resource. In this example, return an ATS signed data endpint and assign to MY_ENDPOINT_HOST**
+**TASK: Return AWS endpoint address of a service resource. In this example, return an ATS signed data endpoint and assign to MY_ENDPOINT_HOST**
 
 MY_ENDPOINT_HOST=$(aws iot describe-endpoint --endpoint-type iot:Data-ATS | grep endpointAddress | cut -d'"' -f 4)
 
-**Task: Return the IAM Role of a resouces in a CloudFormation stack. The example below returns the role of a Lambda function and assign to MY_LAMBDA_ROLE**
+**Task: Return the IAM Role of a resource in a CloudFormation stack. The example below returns the role of a Lambda function and assign to MY_LAMBDA_ROLE**
 
 MY_LAMBDA_ROLE=$(aws cloudformation describe-stack-resource --stack-name my-stack --logical-resource-id MyLambdaRole --query "StackResourceDetail.PhysicalResourceId" --output text)
 
