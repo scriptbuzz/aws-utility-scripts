@@ -20,6 +20,16 @@ aws sts get-caller-identity
 }
 ```
 
+**TASK: Return the public IP address of an EC2 instance, if any**
+```
+curl https://checkip.amazonaws.com
+```
+**TASK: Create a key pair and pipe your private key directly to a local file.**
+
+```
+aws ec2 create-key-pair --key-name ThisKeyPair --query 'KeyMaterial' --output text > ThisKeyPair.pem
+```
+
 **TASK: return AWS account ID and assign to variable AWS_ACCOUNT_ID**
 
 - Method 1: AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
