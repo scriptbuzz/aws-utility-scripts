@@ -2,8 +2,8 @@ Environment: AWS CLI, Bash, EC2, Amazon Linux, and least privileged permissions.
 
 **Task: These settings are a must for bash script debugging**
 
-set -o errexit  # abort on nonzero exitstatus
-set -o pipefail # don't hide errors within pipes
+- set -o errexit  # abort on nonzero exitstatus
+- set -o pipefail # don't hide errors within pipes
 
 **TASK: Check if user has AWS credentials from EC2 by running command: aws sts get-caller-identity**
 
@@ -16,9 +16,8 @@ aws sts get-caller-identity
 
 **TASK: return AWS account ID and assign to variable AWS_ACCOUNT_ID**
 
-Method#1: AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
-
-Method#2: AWS_ACCOUNT_ID=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .accountId)
+- Method 1: AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
+- Method 2: AWS_ACCOUNT_ID=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .accountId)
 Above example requires the jq package
 
 **TASK: Using the CLI and Bash and EC2 metadata call, determine AWS region and assign to MY_AWS_REGIONS**
@@ -38,8 +37,6 @@ fi
 **TASK: Return a physical resource id from a CloudFormation stack and assign to a variable. In this example, return the name of an S3 bucket and assign to MY_BUCKET**
 
 MY_BUCKET=$(aws cloudformation describe-stack-resource --stack-name my-stack --logical-resource-id bucket --query "StackResourceDetail.PhysicalResourceId" --output text)
-
-echo $MY_BUCKET
 
 **TASK: Return AWS endpoint address of a service resource. In this example, return an ATS signed data endpoint and assign to MY_ENDPOINT_HOST**
 
