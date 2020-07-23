@@ -63,6 +63,11 @@ fi
 ```
 aws ec2 describe-instances --filters "Name=instance-type,Values=t3.xlarge" --query "Reservations[].Instances[].InstanceId"
 ```
+**TASK: List any EC2 instances that have the tag key & value ENV=DEV**
+```
+aws ec2 describe-instances --filters "Name=tag:ENV,Values=DEV"
+```
+
 
 
 
