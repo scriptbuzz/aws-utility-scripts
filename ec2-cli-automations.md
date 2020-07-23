@@ -3,7 +3,7 @@
 - AWS CLI
 - Least privileged permissions
 
-**TASK: These settings are a must for bash script debugging**
+**TASK:Settings I consider a must for bash script debugging and development for the AWS CLI**
 
 - set -o errexit  # abort on nonzero exitstatus
 - set -o pipefail # don't hide errors within pipes
@@ -29,7 +29,7 @@ Above example requires the jq package
 
 **TASK: Using the CLI and Bash and EC2 metadata call, determine AWS region and assign to MY_AWS_REGIONS**
 
-MY_AWS_REGIONS=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/\(.*\)[a-z]/\1/')
+```MY_AWS_REGIONS=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/\(.*\)[a-z]/\1/')```
 
 **TASK: Using the variable MY_AWS_REGIONS from previous command, we can test if we are in our supported regions and echo results**
 
@@ -44,21 +44,22 @@ fi
 
 **TASK: Return a physical resource id from a CloudFormation stack and assign to a variable. In this example, return the name of an S3 bucket and assign to MY_BUCKET**
 
-MY_BUCKET=$(aws cloudformation describe-stack-resource --stack-name my-stack --logical-resource-id bucket --query "StackResourceDetail.PhysicalResourceId" --output text)
+```MY_BUCKET=$(aws cloudformation describe-stack-resource --stack-name my-stack --logical-resource-id bucket --query "StackResourceDetail.PhysicalResourceId" --output text)```
 
 **TASK: Return AWS endpoint address of a service resource. In this example, return an ATS signed data endpoint and assign to MY_ENDPOINT_HOST**
 
-MY_ENDPOINT_HOST=$(aws iot describe-endpoint --endpoint-type iot:Data-ATS | grep endpointAddress | cut -d'"' -f 4)
+```MY_ENDPOINT_HOST=$(aws iot describe-endpoint --endpoint-type iot:Data-ATS | grep endpointAddress | cut -d'"' -f 4)```
 
 **TASK: Return the IAM Role of a resource in a CloudFormation stack. The example below returns the role of a Lambda function and assign to MY_LAMBDA_ROLE**
 
-MY_LAMBDA_ROLE=$(aws cloudformation describe-stack-resource --stack-name my-stack --logical-resource-id MyLambdaRole --query "StackResourceDetail.PhysicalResourceId" --output text)
+```MY_LAMBDA_ROLE=$(aws cloudformation describe-stack-resource --stack-name my-stack --logical-resource-id MyLambdaRole --query "StackResourceDetail.PhysicalResourceId" --output text)```
 
 **TASK: Return the ARN of an IAM Role. In this example, build the ARN string and assign to MY_LAMBDA_ROLE_ARN**
 
-MY_LAMBDA_ROLE_ARN=$(aws iam get-role --role-name $MY_LAMBDA_ROLE | grep Arn | cut -d'"' -f 4)
+```MY_LAMBDA_ROLE_ARN=$(aws iam get-role --role-name $MY_LAMBDA_ROLE | grep Arn | cut -d'"' -f 4)```
 
 **TASK: Filters listing of EC2 instances to only your a specific instance type. In this example, filter on t3.xlarge instances and outputs only the InstanceId for all matches.**
+
 ```
 aws ec2 describe-instances --filters "Name=instance-type,Values=t3.xlarge" --query "Reservations[].Instances[].InstanceId"
 ```
