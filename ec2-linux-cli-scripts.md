@@ -1,6 +1,6 @@
 # Environment: AWS CLI, Bash, Amazon Linux, 
 
-**Task: These settings are a must for bash script debugging__
+**Task: These settings are a must for bash script debugging**
 
 set -o errexit  # abort on nonzero exitstatus
 set -o pipefail # don't hide errors within pipes
