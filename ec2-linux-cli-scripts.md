@@ -4,6 +4,7 @@ Environment: AWS CLI, Bash, EC2, Amazon Linux, and least privileged permissions.
 
 - set -o errexit  # abort on nonzero exitstatus
 - set -o pipefail # don't hide errors within pipes
+- For JSON parsing: sudo yum install jq
 
 **TASK: Check if user has AWS credentials from EC2 by running command: aws sts get-caller-identity**
 
