@@ -9,11 +9,13 @@ Environment: AWS CLI, Bash, EC2, Amazon Linux, and least privileged permissions.
 **TASK: Check if user has AWS credentials from EC2 by running command: aws sts get-caller-identity**
 
 aws sts get-caller-identity
+```json
 {
     "Account": "123456789012",
     "UserId": "XKIAIV4QH8DVBZXDMKQE",
     "Arn": "arn:aws:iam::123456789012:user/app-developer01"
 }
+```
 
 **TASK: return AWS account ID and assign to variable AWS_ACCOUNT_ID**
 
