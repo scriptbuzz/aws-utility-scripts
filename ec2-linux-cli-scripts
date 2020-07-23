@@ -1,0 +1,30 @@
+# Environment: AWS CLI, Bash, Amazon Linux, 
+
+
+# TASK: Check if user has AWS credentials from EC2 by running command: aws sts get-caller-identity
+
+prompt >> aws sts get-caller-identity
+{
+    "Account": "123456789012",
+    "UserId": "XKIAIV4QH8DVBZXDMKQE",
+    "Arn": "arn:aws:iam::123456789012:user/app-developer01"
+}
+
+# TASK: return AWS account ID and assign to variable AWS_ACCOUNT_ID
+
+AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
+
+# TASK: Using the CLI and Bash and EC2 metadata call, determine AWS region
+
+prompt >> MY_AWS_REGIONS=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/\(.*\)[a-z]/\1/')
+
+# TASK: Using the variable MY_AWS_REGIONS from previous command, we can test if we are in our supported regions
+
+prompt >> SUPPORTED_REGIONS=("us-east-1" "us-east-2" )
+if [[ ! " ${SUPPORTED_REGIONS[@]} " =~ " ${MY_AWS_REGIONS} " ]]; then
+    /bin/echo -e "'$MY_AWS_REGIONS' is not a supported AWS Region." 
+else
+    /bin/echo -e "'$MY_AWS_REGIONS' is a supported AWS Region." 
+fi
+
+
