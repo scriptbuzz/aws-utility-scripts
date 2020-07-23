@@ -9,11 +9,11 @@
 - set -o pipefail # don't hide errors within pipes
 - For JSON parsing: sudo yum install jq
 
-**TASK: An EC2 bootstrap script **
+**TASK: An EC2 bootstrap script**
 
 https://github.com/awslabs/amazon-guardduty-tester/blob/master/bastion_bootstrap.sh
 
-**TASK: Find OS **
+**TASK: Find OS**
 
 ```
 function osrelease () {
