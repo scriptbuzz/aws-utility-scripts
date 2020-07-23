@@ -1,4 +1,7 @@
-Environment: AWS CLI, Bash, EC2, Amazon Linux, and least privileged permissions.
+**Environment**
+- AWS EC2/Amazon Linux
+- AWS CLI
+- Least privileged permissions
 
 **Task: These settings are a must for bash script debugging**
 
