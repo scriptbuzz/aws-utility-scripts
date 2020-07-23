@@ -68,6 +68,11 @@ aws ec2 describe-instances --filters "Name=instance-type,Values=t3.xlarge" --que
 aws ec2 describe-instances --filters "Name=tag:ENV,Values=DEV"
 ```
 
+**TASK: List  EC2 instances lists your instances with AMIs ami-3333333 and ami-2222222**
+```
+aws ec2 describe-instances --filters "Name=image-id,Values=ami-3333333,ami-2222222"
+```
+
 
 
 
