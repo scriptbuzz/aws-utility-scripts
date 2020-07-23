@@ -84,26 +84,23 @@ aws ec2 describe-instances --filters "Name=image-id,Values=ami-3333333,ami-22222
 ```
 
 
-**TASK: Basic S3 operations CLI commands **
+**TASK: Basic S3 operations CLI commands**
 
 ```
 // Delete local file
 $ rm ./MyFile1.txt
 
-// Attempt sync without --delete option - nothing happens
+// Attempt sync without --delete option
 $ aws s3 sync . s3://my-bucket/path
 
 // Sync with deletion - object is deleted from bucket
 $ aws s3 sync . s3://my-bucket/path --delete
-delete: s3://my-bucket/path/MyFile1.txt
 
 // Delete object from bucket
 $ aws s3 rm s3://my-bucket/path/MySubdirectory/MyFile3.txt
-delete: s3://my-bucket/path/MySubdirectory/MyFile3.txt
 
 // Sync with deletion - local file is deleted
 $ aws s3 sync s3://my-bucket/path . --delete
-delete: MySubdirectory\MyFile3.txt
 
 // Sync with Infrequent Access storage class
 $ aws s3 sync . s3://my-bucket/path --storage-class STANDARD_IA
