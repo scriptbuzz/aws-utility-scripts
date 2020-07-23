@@ -21,6 +21,7 @@ aws sts get-caller-identity
 
 - Method 1: AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
 - Method 2: AWS_ACCOUNT_ID=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .accountId)
+
 Above example requires the jq package
 
 **TASK: Using the CLI and Bash and EC2 metadata call, determine AWS region and assign to MY_AWS_REGIONS**
@@ -29,13 +30,14 @@ MY_AWS_REGIONS=$(curl -s http://169.254.169.254/latest/meta-data/placement/avail
 
 **TASK: Using the variable MY_AWS_REGIONS from previous command, we can test if we are in our supported regions and echo results**
 
+```
 SUPPORTED_REGIONS=("us-east-1" "us-east-2" )
 if [[ ! " ${SUPPORTED_REGIONS[@]} " =~ " ${MY_AWS_REGIONS} " ]]; then
     /bin/echo -e "'$MY_AWS_REGIONS' is not a supported AWS Region." 
 else
     /bin/echo -e "'$MY_AWS_REGIONS' is a supported AWS Region." 
 fi
-
+```
 
 **TASK: Return a physical resource id from a CloudFormation stack and assign to a variable. In this example, return the name of an S3 bucket and assign to MY_BUCKET**
 
