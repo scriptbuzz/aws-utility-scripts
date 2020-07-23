@@ -57,3 +57,11 @@ MY_LAMBDA_ROLE=$(aws cloudformation describe-stack-resource --stack-name my-stac
 **TASK: Return the ARN of an IAM Role. In this example, build the ARN string and assign to MY_LAMBDA_ROLE_ARN**
 
 MY_LAMBDA_ROLE_ARN=$(aws iam get-role --role-name $MY_LAMBDA_ROLE | grep Arn | cut -d'"' -f 4)
+
+**TASK: Filters listing of EC2 instances to only your a specific instance type. In this example, filter on t3.xlarge instances and outputs only the InstanceId for all matches.**
+```
+aws ec2 describe-instances --filters "Name=instance-type,Values=t3.xlarge" --query "Reservations[].Instances[].InstanceId"
+```
+
+
+
