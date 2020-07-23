@@ -104,5 +104,14 @@ $ aws s3 sync s3://my-bucket/path . --delete
 
 // Sync with Infrequent Access storage class
 $ aws s3 sync . s3://my-bucket/path --storage-class STANDARD_IA
+
+// Sync but exclude files with extention txt
+$ aws s3 sync . s3://my-bucket/path --exclude "*.txt"
+
+// Sync but exclude files with extension txt unless the file names start with MyFile then include files
+$ aws s3 sync . s3://my-bucket/path --exclude "*.txt" --include "MyFile*.txt"
+
+// Sync but exclude files with extension txt unless the file names start with MyFile then include files except when there's only a signe char match
+$ aws s3 sync . s3://my-bucket/path --exclude "*.txt" --include "MyFile*.txt" --exclude "MyFile?.txt"
 ```
 
