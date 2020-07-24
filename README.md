@@ -39,10 +39,11 @@ function osrelease () {
 **Check if user has AWS credentials**
 
 
-```aws sts get-caller-identity
+```aws sts get-caller-identity```
 
-sample response:
+Sample response:
 
+```
 {
     "Account": "123456789012",
     "UserId": "XKIAIV4QH8DVBZXDMKQE",
