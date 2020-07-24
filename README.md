@@ -2,20 +2,22 @@
 A collection of AWS automations and commands that I use frequently which I have collected overtime. The majority of the automations have been shamelessly borrowed with modifications. Thanks to all the developers of the original works and to the AWS documentation. 
 
 **Environment**
+```
 - AWS EC2/Amazon Linux
 - AWS CLI
 - Least privileged permissions
+```
 
 **Settings I consider a must for bash script debugging and development for the AWS CLI**
-
+```
 - set -o errexit  # abort on nonzero exitstatus
 - set -o pipefail # don't hide errors within pipes
 - For JSON parsing: sudo yum install jq
-
+```
 **An EC2 bootstrap script**
-
+```
 https://github.com/awslabs/amazon-guardduty-tester/blob/master/bastion_bootstrap.sh
-
+```
 **Determine the host OS**
 
 ```
@@ -34,12 +36,9 @@ function osrelease () {
 }
 
 ```
-
-
 **Check if user has AWS credentials from EC2 by running command: aws sts get-caller-identity**
 
-aws sts get-caller-identity
-```json
+```aws sts get-caller-identity
 {
     "Account": "123456789012",
     "UserId": "XKIAIV4QH8DVBZXDMKQE",
@@ -59,9 +58,10 @@ aws ec2 create-key-pair --key-name ThisKeyPair --query 'KeyMaterial' --output te
 
 **Return AWS account ID and assign to variable**
 
+```
 - Method 1: AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
 - Method 2: AWS_ACCOUNT_ID=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .accountId)
-
+```
 Above example requires the jq package
 
 **Using the EC2 metadata, determine AWS region and assign to var**
@@ -104,13 +104,10 @@ aws ec2 describe-instances --filters "Name=instance-type,Values=t3.xlarge" --que
 ```
 aws ec2 describe-instances --filters "Name=tag:ENV,Values=DEV"
 ```
-
 **List EC2 instances with AMI ids ami-3333333 and ami-2222222**
 ```
 aws ec2 describe-instances --filters "Name=image-id,Values=ami-3333333,ami-2222222"
 ```
-
-
 **Basic S3 operations CLI commands**
 
 ```
