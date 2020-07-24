@@ -36,9 +36,13 @@ function osrelease () {
 }
 
 ```
-**Check if user has AWS credentials from EC2 by running command: aws sts get-caller-identity**
+**Check if user has AWS credentials**
+
 
 ```aws sts get-caller-identity
+
+sample response:
+
 {
     "Account": "123456789012",
     "UserId": "XKIAIV4QH8DVBZXDMKQE",
