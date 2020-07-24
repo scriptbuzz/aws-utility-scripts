@@ -14,11 +14,11 @@ A collection of AWS automations and commands that I use frequently which I have 
 - set -o pipefail # don't hide errors within pipes
 - For JSON parsing: sudo yum install jq
 ```
-**An EC2 bootstrap script**
-```
+**An EC2 bootstrap script I found useful as a starting point**
+
 https://github.com/awslabs/amazon-guardduty-tester/blob/master/bastion_bootstrap.sh
-```
-**Determine the host OS**
+
+**Determine host OS**
 
 ```
 function osrelease () {
